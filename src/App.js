@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.css";
+import Nav from "./components/Nav";
+import Results from "./components/Results";
+import Search from "./components/Search";
+import axios from "axios";
+
 
 function App() {
+  const [searchResult, setSearchResult] = useState()
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState();
+
+  async function fetchMovies() {
+    setLoading(true);
+    const { data } = await axios.get(
+      `https://www.omdbapi.com/?apikey=42f4673d&s=${searchResult}`
+    );
+    setMovies(data.Search);
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    console.log(searchResult)
+  }, [searchResult])
+
   return (
+    <>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Nav />
+      <Search setSearchResult={setSearchResult} fetchMovies={fetchMovies}/>
+      <Results movies={movies} loading={loading}/>
     </div>
+    </>
   );
 }
 

@@ -94,7 +94,6 @@ nav {
 .search__bar {
     margin: 24px 0 24px 0;
     text-align: center;
-    position: relative;
 }
 
 .search__input{
@@ -105,17 +104,39 @@ nav {
     border: 1px solid white;
     color: white;
     background-color: #121212;
+    position: relative;
+    transition: all 300ms;
+}
+
+.search__input:focus {
+  border-color: #228CDB;
+  outline: 0;
 }
 
 .search__icon {
     position: absolute;
     color: white;
-    top: 0;
-    transform: translate(-175%, 50%);
-    font-size: 24px;
+    transform: translate(-180%, 65%);
+    font-size: 20px;
     cursor: pointer;
     z-index: 1;
     transition: all 300ms ease;
+}
+
+.search__spinner {
+  position: absolute;
+  color: #228CDB;
+  font-size: 20px;
+  animation: spin 1500ms infinite linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-180%, 65%) rotate(0deg);
+  } 
+  100% {
+    transform: translate(-180%, 65%) rotate(360deg);
+  }
 }
 
 .search__icon:hover {
@@ -123,11 +144,11 @@ nav {
 }
 
 .search__icon:hover {
-    transform: translate(-175%, 50%) scale(1.1);
+    transform: translate(-180%, 65%) scale(1.1);
 }
 
 .search__icon:active {
-    transform: translate(-175%, 50%) scale(0.9);
+    transform: translate(-180%, 65%) scale(0.9);
 }
 
 

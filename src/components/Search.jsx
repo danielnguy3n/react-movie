@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function Search({setSearchResult, fetchMovies}) {
-  function onEnter(event) {
-    fetchMovies()
-    event.target.blur()
-  }  
+export default function Search({ setSearchResult, fetchMovies }) {
+  const [spinnerLoading, setSpinnerLoading] = useState();
+
+  function searchAction(event) {
+    setSpinnerLoading(true);
+    setTimeout(() => {
+      fetchMovies();
+      event.target.blur();
+      setSpinnerLoading(false);
+    }, 1000);
+  }
 
   return (
     <section className="search">
@@ -18,9 +24,24 @@ export default function Search({setSearchResult, fetchMovies}) {
               type="text"
               placeholder="Search by Title"
               onChange={(event) => setSearchResult(event.target.value)}
-              onKeyDown={(event) => event.key === 'Enter' && onEnter(event)}
+              onKeyDown={(event) => event.key === "Enter" && searchAction(event)}
             />
-            <FontAwesomeIcon icon="magnifying-glass" className="search__icon" onClick={fetchMovies}/>
+            {spinnerLoading ? (
+              <>
+                <FontAwesomeIcon
+                  icon="circle-notch"
+                  className="search__spinner"
+                />
+              </>
+            ) : (
+              <>
+                <FontAwesomeIcon
+                  icon="magnifying-glass"
+                  className="search__icon"
+                  onClick={(event) => searchAction(event)}
+                />
+              </>
+            )}
           </div>
         </div>
       </div>

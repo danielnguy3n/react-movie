@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate, useParams } from "react-router-dom";
 
-export default function Search({ setSearchResult, fetchMovies }) {
+export default function Searchbar({ searchResult, setSearchResult, fetchMovies }) {
+  let navigate = useNavigate();
+  const {result} = useParams();
   const [spinnerLoading, setSpinnerLoading] = useState();
+
+  console.log(localStorage)
 
   function searchAction(event) {
     setSpinnerLoading(true);
@@ -10,6 +15,7 @@ export default function Search({ setSearchResult, fetchMovies }) {
       fetchMovies();
       event.target.blur();
       setSpinnerLoading(false);
+      navigate(`/search/${searchResult}`)
     }, 1000);
   }
 
@@ -24,7 +30,9 @@ export default function Search({ setSearchResult, fetchMovies }) {
               type="text"
               placeholder="Search by Title"
               onChange={(event) => setSearchResult(event.target.value)}
-              onKeyDown={(event) => event.key === "Enter" && searchAction(event)}
+              onKeyDown={(event) =>
+                event.key === "Enter" && searchAction(event)
+              }
             />
             {spinnerLoading ? (
               <>

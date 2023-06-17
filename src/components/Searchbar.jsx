@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export default function Searchbar({ searchResult, setSearchResult, fetchMovies }) {
+export default function Searchbar({ searchResult, setSearchResult, fetchMovies, setPage }) {
   let navigate = useNavigate();
-  const {result} = useParams();
   const [spinnerLoading, setSpinnerLoading] = useState();
-
-  console.log(localStorage)
+  const ref = useRef()
 
   function searchAction(event) {
     setSpinnerLoading(true);
@@ -15,6 +13,8 @@ export default function Searchbar({ searchResult, setSearchResult, fetchMovies }
       fetchMovies();
       event.target.blur();
       setSpinnerLoading(false);
+      setPage(1)
+      ref.current.value = ''
       navigate(`/search/${searchResult}`)
     }, 1000);
   }
@@ -23,12 +23,13 @@ export default function Searchbar({ searchResult, setSearchResult, fetchMovies }
     <section className="search">
       <div className="row">
         <div className="container">
-          <h1 className="browse">Browse our catalogue</h1>
+          <h1 className="browse">Browse our <span className="colour-text">catalogue</span></h1>
           <div className="search__bar">
             <input
               className="search__input"
               type="text"
               placeholder="Search by Title"
+              ref={ref}
               onChange={(event) => setSearchResult(event.target.value)}
               onKeyDown={(event) =>
                 event.key === "Enter" && searchAction(event)

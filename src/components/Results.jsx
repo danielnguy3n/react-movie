@@ -1,24 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Movie from "./ui/Movie";
+import PageBtns from "./ui/PageBtns";
 
-export default function Results({movies, loading}) {
-
+export default function Results({
+  searchResult,
+  movies,
+  loading,
+  page,
+  setPage,
+  lastPage,
+}) {
   return (
     <section className="results">
       <div className="row">
         <div className="results__container">
           <div className="results__header">
-            <h1 className="search-results">Trending Movies</h1>
-            <select id="filter">
-              {/* <option value="start" disabled selected>Sort</option> */}
-              <option value="NEWEST-OLDEST">Newest to Oldest</option>
-              <option value="OLDEST-NEWEST">Oldest to Newest</option>
-            </select>
+            <h1 className="search-results">
+              Search results for{" "}
+              <span className="colour-text"> "{searchResult}" </span>
+            </h1>
+            <PageBtns page={page} setPage={setPage} lastPage={lastPage} />
           </div>
           <div className="movie-list">
             {loading ? (
               <>
-                {new Array(8).fill(0).map((_, index) => (
+                {new Array(10).fill(0).map((_, index) => (
                   <div className="movie" key={index}>
                     <div className="skeleton movie__skeleton--img"></div>
                     <div className="skeleton movie__skeleton--title"></div>
@@ -28,12 +34,14 @@ export default function Results({movies, loading}) {
               </>
             ) : (
               <>
-                {movies
-                  .map((movie, index) => <Movie movie={movie} key={index} />)
-                  .slice(0, 8)}
+                {movies.map((movie, index) => (
+                  <Movie movie={movie} key={index} />
+                ))}
               </>
             )}
-            {}
+          </div>
+          <div className="results__footer">
+            <PageBtns page={page} setPage={setPage} lastPage={lastPage} />
           </div>
         </div>
       </div>

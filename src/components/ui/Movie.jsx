@@ -5,7 +5,6 @@ export default function Movie({ movie }) {
   const {result} = useParams()
   return (
     <Link to={`/search/${result}/${movie.imdbID}`} className="movie">
-      {/* <div className="movie" onClick={() => navigate(`/search/${searchResult}/${movie.imdbID}`)}> */}
         <figure className="movie__img--wrapper">
           <img className="movie__img" src={movie.Poster} alt="" />
         </figure>

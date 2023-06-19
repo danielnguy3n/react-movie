@@ -2,28 +2,48 @@ import React, { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 
-export default function Searchbar({ searchResult, setSearchResult, fetchMovies, setPage }) {
+export default function Searchbar({
+  searchResult,
+  setSearchResult,
+  fetchMovies,
+  setPage,
+}) {
   let navigate = useNavigate();
   const [spinnerLoading, setSpinnerLoading] = useState();
-  const ref = useRef()
+  const ref = useRef();
+
+  function validateResult() {
+    if (searchResult.length < 3) {
+      alert("Keyword must be at least 3 characters");
+    } else {
+      fetchMovies()
+    }
+  }
 
   function searchAction(event) {
     setSpinnerLoading(true);
     setTimeout(() => {
-      fetchMovies();
+      validateResult();
+
       event.target.blur();
+
       setSpinnerLoading(false);
-      setPage(1)
-      ref.current.value = ''
-      navigate(`/search/${searchResult}`)
-    }, 1000);
+
+      setPage(1);
+
+      ref.current.value = "";
+
+      navigate(`/search/${searchResult}`);
+    }, 500);
   }
 
   return (
     <section className="search">
       <div className="row">
         <div className="container">
-          <h1 className="browse">Browse our <span className="colour-text">catalogue</span></h1>
+          <h1 className="browse">
+            Browse our <span className="colour-text">catalogue</span>
+          </h1>
           <div className="search__bar">
             <input
               className="search__input"

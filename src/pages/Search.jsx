@@ -13,6 +13,7 @@ export default function Search({
   page,
   setPage,
   lastPage,
+  notFound
 }) {
   const params = useParams();
   return (
@@ -32,6 +33,7 @@ export default function Search({
           setPage={setPage}
           lastPage={lastPage}
           fetchMovies={fetchMovies}
+          notFound={notFound}
         />
       ) : (
         <section className="results">

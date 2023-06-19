@@ -321,6 +321,21 @@ nav {
     letter-spacing: 0.5px;
 }
 
+.no-results__header {
+  text-align: center;
+  padding: 0 24px;
+}
+
+.no-results__img--wrapper {
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 64px;
+}
+
+.no-results__img {
+  width: 100%;
+}
+
 .results__footer {
   display: flex;
   justify-content: center;
@@ -362,6 +377,7 @@ nav {
   font-weight: 500;
   padding: 4px;
   border-radius: 8px;
+  text-align: center;
 }
 
 .movie-list {

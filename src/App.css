@@ -327,9 +327,10 @@ nav {
 }
 
 .no-results__img--wrapper {
-  width: 70%;
+  max-width: 600px;
+  padding: 24px;
   margin: 0 auto;
-  margin-top: 64px;
+  margin-bottom: 40px;
 }
 
 .no-results__img {

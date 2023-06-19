@@ -1,7 +1,7 @@
 import React from "react";
 import Movie from "./ui/Movie";
 import PageBtns from "./ui/PageBtns";
-import noResults from "../assets/noresult.svg"
+import noResults from "../assets/noresult.svg";
 
 export default function Results({
   searchResult,
@@ -18,12 +18,12 @@ export default function Results({
         <div className="results__container">
           {notFound ? (
             <div className="no-results">
-              <h2 className="no-results__header">
-                No results found. Please try another word!
-              </h2>
               <figure className="no-results__img--wrapper">
                 <img src={noResults} alt="" className="no-results__img" />
               </figure>
+              <h2 className="no-results__header">
+                No results found. Please try another word!
+              </h2>
             </div>
           ) : (
             <>

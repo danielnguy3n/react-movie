@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
-export default function PageBtns({page, setPage, lastPage}) {
+export default function PageBtns({ page, setPage, lastPage }) {
   function handleChange(event) {
     event.preventDefault();
     let page = +event.target.value;
@@ -40,11 +40,15 @@ export default function PageBtns({page, setPage, lastPage}) {
         </span>{" "}
         / {lastPage}
       </h3>
-      <FontAwesomeIcon
-        icon="chevron-right"
-        className="page__btn forward"
-        onClick={() => setPage((page = page + 1))}
-      />
+      {page === lastPage ? (
+        <FontAwesomeIcon icon="chevron-right" className="grey__btn" />
+      ) : (
+        <FontAwesomeIcon
+          icon="chevron-right"
+          className="page__btn forward"
+          onClick={() => setPage((page = page + 1))}
+        />
+      )}
     </div>
   );
 }

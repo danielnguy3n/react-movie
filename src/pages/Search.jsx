@@ -1,8 +1,8 @@
 import React from "react";
-import Searchbar from "../Searchbar";
-import Results from "../Results";
+import Searchbar from "../components/Searchbar";
+import Results from "../components/Results";
 import { useParams } from "react-router-dom";
-import logo from "../../assets/search.svg";
+import logo from "../assets/search.svg";
 
 export default function Search({
   searchResult,

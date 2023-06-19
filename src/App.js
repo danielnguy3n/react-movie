@@ -3,9 +3,9 @@ import "./App.css";
 import Nav from "./components/Nav";
 import axios from "axios";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Search from "./components/pages/Search";
-import Home from "./components/pages/Home";
-import MovieInfo from "./components/pages/MovieInfo";
+import Search from "./pages/Search";
+import Home from "./pages/Home";
+import MovieInfo from "./pages/MovieInfo";
 
 function App() {
   const [searchResult, setSearchResult] = useState();

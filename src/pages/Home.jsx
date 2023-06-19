@@ -1,6 +1,6 @@
 import React from "react";
-import homeImg from "../../assets/home2.svg";
-import Searchbar from "../Searchbar";
+import homeImg from "../assets/home2.svg";
+import Searchbar from "../components/Searchbar";
 
 export default function Home({
   searchResult,

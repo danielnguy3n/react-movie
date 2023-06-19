@@ -2,8 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import RenderMovieInfo from "../ui/RenderInfo";
-import SkeletonInfo from "../ui/SkeletonInfo";
+import RenderMovieInfo from "../components/ui/RenderInfo";
+import SkeletonInfo from "../components/ui/SkeletonInfo";
 
 export default function MovieInfo() {
   const { result, movieID } = useParams();
